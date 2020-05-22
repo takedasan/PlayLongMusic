@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  PlayLongMusic
-//
-//  Created by 竹田晴樹 on 2020/05/19.
-//  Copyright © 2020 takeda_san. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

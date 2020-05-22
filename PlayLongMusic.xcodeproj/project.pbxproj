@@ -14,6 +14,7 @@
 		09AB316F24742A7A0022533A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09AB316E24742A7A0022533A /* Assets.xcassets */; };
 		09AB317224742A7A0022533A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AB317024742A7A0022533A /* LaunchScreen.storyboard */; };
 		09AB317D24742A7B0022533A /* PlayLongMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */; };
+		09AB318824781C920022533A /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09AB318724781C920022533A /* sample.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		09AB317824742A7B0022533A /* PlayLongMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayLongMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayLongMusicTests.swift; sourceTree = "<group>"; };
 		09AB317E24742A7B0022533A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09AB318724781C920022533A /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sample.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		09AB316424742A6C0022533A /* PlayLongMusic */ = {
 			isa = PBXGroup;
 			children = (
+				09AB318724781C920022533A /* sample.mp3 */,
 				09AB316524742A6C0022533A /* AppDelegate.swift */,
 				09AB316724742A6C0022533A /* SceneDelegate.swift */,
 				09AB316924742A6C0022533A /* ViewController.swift */,
@@ -182,6 +185,7 @@
 			files = (
 				09AB317224742A7A0022533A /* LaunchScreen.storyboard in Resources */,
 				09AB316F24742A7A0022533A /* Assets.xcassets in Resources */,
+				09AB318824781C920022533A /* sample.mp3 in Resources */,
 				09AB316D24742A6C0022533A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
