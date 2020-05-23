@@ -16,20 +16,37 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: Actions
     @IBAction func pushPlayButton(_ sender: UIButton) {
-        self.updatePlayButton()
+        self.togglePlayButton()
     }
     
     // MARK: Private methods
-    private func updatePlayButton() {
+    private func togglePlayButton() {
         let audioPath = Bundle.main.path(forResource: "sample", ofType:"mp3")!
         let audioUrl = URL(fileURLWithPath: audioPath)
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
             audioPlayer.delegate = self
-            audioPlayer.play()
+            
         } catch {
+            // TODO 握り潰し
         }
+        
+        if(playButton.titleLabel?.text == "play") {
+            playButton.setTitle("stop", for: .normal)
+            self.playMusic()
+        } else {
+            playButton.setTitle("play", for: .normal)
+            self.stopMusic()
+        }
+    }
+    
+    private func playMusic() {
+        audioPlayer.play()
+    }
+    
+    private func stopMusic() {
+        audioPlayer.stop()
     }
 }
 
