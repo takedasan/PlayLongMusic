@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		09AB317224742A7A0022533A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AB317024742A7A0022533A /* LaunchScreen.storyboard */; };
 		09AB317D24742A7B0022533A /* PlayLongMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */; };
 		09AB318824781C920022533A /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09AB318724781C920022533A /* sample.mp3 */; };
+		09E3120F2483EB100015B3BC /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 09E3120E2483EB100015B3BC /* Telegraph */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E3120F2483EB100015B3BC /* Telegraph in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,9 @@
 			dependencies = (
 			);
 			name = PlayLongMusic;
+			packageProductDependencies = (
+				09E3120E2483EB100015B3BC /* Telegraph */,
+			);
 			productName = PlayLongMusic;
 			productReference = 09AB316224742A6C0022533A /* PlayLongMusic.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +173,9 @@
 				Base,
 			);
 			mainGroup = 09AB315924742A6C0022533A;
+			packageReferences = (
+				09E3120D2483EB100015B3BC /* XCRemoteSwiftPackageReference "Telegraph" */,
+			);
 			productRefGroup = 09AB316324742A6C0022533A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -469,6 +477,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09E3120D2483EB100015B3BC /* XCRemoteSwiftPackageReference "Telegraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Building42/Telegraph.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.28.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09E3120E2483EB100015B3BC /* Telegraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09E3120D2483EB100015B3BC /* XCRemoteSwiftPackageReference "Telegraph" */;
+			productName = Telegraph;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 09AB315A24742A6C0022533A /* Project object */;
 }

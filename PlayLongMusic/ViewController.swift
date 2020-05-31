@@ -46,7 +46,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     private func stopMusic() {
-        audioPlayer.stop()
+        audioPlayer.pause()
     }
 }
 
