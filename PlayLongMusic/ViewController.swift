@@ -16,23 +16,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         // Do any additional setup after loading the view.
         server = Server()
         try! server.start(port: 9000)
-        server.route(.GET, "", handle)
+        server.route(.GET, "", handleGet)
         server.route(.POST, "", handlePost)
-    }
-    
-    func handlePost(request: HTTPRequest) -> HTTPResponse {
-        return HTTPResponse(content: request.body.base64EncodedString())
-    }
-    
-    func handle(request: HTTPRequest) -> HTTPResponse {
-        let htmlFile = Bundle.main.path(forResource: "uploadform", ofType: "html")
-        
-        do {
-            let data = try String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
-            return HTTPResponse(content: data)
-        }catch _ as NSError {
-            fatalError("Uploader HTML file is not found.")
-        }
     }
     
     // MARK: Actions
@@ -41,6 +26,33 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     // MARK: Private methods
+    private func handlePost(request: HTTPRequest) -> HTTPResponse {
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let savePath = documentsPath.appendingPathComponent("hoge.mp3")
+        
+        do {
+            let musicData = request.body.base64EncodedData()
+            try musicData.write(to: savePath, options: Data.WritingOptions.atomic)
+        } catch let error as NSError {
+            print(error)
+            fatalError("Data save failed.")
+        }
+        
+        return HTTPResponse(content: request.body.base64EncodedString())
+    }
+    
+    private func handleGet(request: HTTPRequest) -> HTTPResponse {
+        let htmlFile = Bundle.main.path(forResource: "uploadform", ofType: "html")
+        
+        do {
+            let htmlString = try String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
+            return HTTPResponse(content: htmlString)
+        } catch let error as NSError {
+            print(error)
+            fatalError("Uploader HTML file is not found.")
+        }
+    }
+    
     private func togglePlayButton() {
         let audioPath = Bundle.main.path(forResource: "sample", ofType:"mp3")!
         let audioUrl = URL(fileURLWithPath: audioPath)
