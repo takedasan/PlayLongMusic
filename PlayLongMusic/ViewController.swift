@@ -26,6 +26,18 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     // MARK: Private methods
+    private func handleGet(request: HTTPRequest) -> HTTPResponse {
+        let htmlFile = Bundle.main.path(forResource: "uploadform", ofType: "html")
+        
+        do {
+            let htmlString = try String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
+            return HTTPResponse(content: htmlString)
+        } catch let error as NSError {
+            print(error)
+            fatalError("Uploader HTML file is not found.")
+        }
+    }
+
     private func handlePost(request: HTTPRequest) -> HTTPResponse {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let savePath = documentsPath.appendingPathComponent("hoge.mp3")
@@ -39,18 +51,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
         return HTTPResponse(content: request.body.base64EncodedString())
-    }
-    
-    private func handleGet(request: HTTPRequest) -> HTTPResponse {
-        let htmlFile = Bundle.main.path(forResource: "uploadform", ofType: "html")
-        
-        do {
-            let htmlString = try String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
-            return HTTPResponse(content: htmlString)
-        } catch let error as NSError {
-            print(error)
-            fatalError("Uploader HTML file is not found.")
-        }
     }
     
     private func togglePlayButton() {
