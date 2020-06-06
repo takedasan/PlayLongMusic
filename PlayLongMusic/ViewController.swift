@@ -19,15 +19,22 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         server.route(.GET, "", handle)
         server.route(.POST, "", handlePost)
     }
-
+    
     func handlePost(request: HTTPRequest) -> HTTPResponse {
         return HTTPResponse(content: request.body.base64EncodedString())
     }
     
     func handle(request: HTTPRequest) -> HTTPResponse {
-        return HTTPResponse(content: #"<b>テスト</b> <form action="/" method="post"><input type="file" accept="image/png, image/jpeg"></input><input type="submit" value="Upload Image" name="submit"></form>"#)
+        let htmlFile = Bundle.main.path(forResource: "uploadform", ofType: "html")
+        
+        do {
+            let data = try String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
+            return HTTPResponse(content: data)
+        }catch _ as NSError {
+            fatalError("Uploader HTML file is not found.")
+        }
     }
-
+    
     // MARK: Actions
     @IBAction func pushPlayButton(_ sender: UIButton) {
         self.togglePlayButton()
