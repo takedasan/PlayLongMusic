@@ -25,7 +25,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func handle(request: HTTPRequest) -> HTTPResponse {
-        return HTTPResponse(content: #"<b>desuto</b> <form action="/" method="post"><input type="file" accept="image/png, image/jpeg"></input><input type="submit" value="Upload Image" name="submit"></form>"#)
+        return HTTPResponse(content: #"<b>テスト</b> <form action="/" method="post"><input type="file" accept="image/png, image/jpeg"></input><input type="submit" value="Upload Image" name="submit"></form>"#)
     }
 
     // MARK: Actions
