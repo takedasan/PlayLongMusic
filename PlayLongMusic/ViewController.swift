@@ -42,27 +42,31 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let savePath = documentsPath.appendingPathComponent("hoge.mp3")
         
+
+        
         do {
-            let musicData = request.body.base64EncodedData()
-            try musicData.write(to: savePath, options: Data.WritingOptions.atomic)
+            let multipart = Multipart.init(contentType: request.headers.contentType!, bodyBase64: request.body)
+            try multipart.body.file[0].data.write(to: savePath, options: Data.WritingOptions.atomic)
         } catch let error as NSError {
             print(error)
-            fatalError("Data save failed.")
+            fatalError("File save failed.")
         }
         
-        return HTTPResponse(content: request.body.base64EncodedString())
+        return HTTPResponse(content: String(data: request.body.base64EncodedData(), encoding: .utf8)!)
     }
     
     private func togglePlayButton() {
-        let audioPath = Bundle.main.path(forResource: "sample", ofType:"mp3")!
-        let audioUrl = URL(fileURLWithPath: audioPath)
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let audioUrl = URL(fileURLWithPath: documentsPath).appendingPathComponent("hoge.mp3")
+        
+        print(audioUrl)
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
             audioPlayer.delegate = self
-            
         } catch {
-            // TODO 握り潰し
+            print(error)
+            fatalError("Music File read failed.")
         }
         
         if(playButton.titleLabel?.text == "play") {
