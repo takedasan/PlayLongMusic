@@ -4,16 +4,18 @@ struct Multipart {
     let contentType: MultipartContentType
     let body: MultipartBody
     
-    init(contentType: String, bodyBase64: Data) {
+    init(contentType: String, body: Data) {
         self.contentType = MultipartUitls.parseHeader(contentType: contentType)
-        self.body = MultipartUitls.parseBody(bodyBase64: bodyBase64, boundary: self.contentType.boundary)
+        self.body = MultipartUitls.parseBody(body: body, boundary: self.contentType.boundary)
     }
 }
 
 fileprivate class MultipartUitls {
-    // MARK: private method
+    private static let LINEFEED = "0K"
+    
+    // MARK: API
     static func parseHeader(contentType: String) -> MultipartContentType {
-        let headerLines = parseLine(targetString: contentType)
+        let headerLines = contentType.components(separatedBy: "\r\n")
         
         let splitedSemicolon = headerLines[0].components(separatedBy: ";")
         let contentType = splitedSemicolon[0].trimmingCharacters(in: .whitespacesAndNewlines)
@@ -22,39 +24,50 @@ fileprivate class MultipartUitls {
         return MultipartContentType(contentType: contentType, boundary: boundary)
     }
     
-    static func parseBody(bodyBase64: Data, boundary: String) -> MultipartBody {
+    static func parseBody(body: Data, boundary: String) -> MultipartBody {
         let boundaryWithPrefix = "--" + boundary
         
-        // 末尾padding分の=を削除する
-        let delimiter = boundaryWithPrefix.data(using: .utf8)?.base64EncodedString().replacingOccurrences(of: "=", with: "")
-        let boundaryWithLineFeed = delimiter!+"0K"
+        // Remove tail padding "="
+        guard let removedPadding = boundaryWithPrefix.data(using: .utf8)?.base64EncodedString().replacingOccurrences(of: "=", with: "")  else {
+            return MultipartBody(file: [MultipartBodyFile]())
+        }
+        // Add line feed
+        let delimiter = removedPadding + LINEFEED
+        let partArray = body.base64EncodedString().components(separatedBy: delimiter)
         
-        let partArray = bodyBase64.base64EncodedString().components(separatedBy: boundaryWithLineFeed)
-        var dataPayload = partArray[1].data(using: .utf8)
-        
-        if var dataPayload2 = dataPayload {
-            if let range = dataPayload2.range(of: "0K".data(using: .utf8)!) {
-                // Convert complete line (excluding the delimiter) to a string:
-                let line = String(data: dataPayload2.subdata(in: 0..<range.lowerBound), encoding: .utf8)
-                // Remove line (and the delimiter) from the buffer:
-                dataPayload2.removeSubrange(0..<range.upperBound)
-                let payloadString = String(data: dataPayload2, encoding: .utf8)
-                let payloadData = Data(base64Encoded: payloadString!)
-                return MultipartBody(file: [MultipartBodyFile(contentDisposition: "", name: "", filename: "", contentType: "", data: payloadData!)])
+        var bodies = [MultipartBodyFile]()
+        for part in partArray {
+            if let bodyFile = parseMultipartBodyFile(part: part) {
+                bodies.append(bodyFile)
             }
         }
         
-        return MultipartBody(file: [MultipartBodyFile(contentDisposition: "", name: "", filename: "", contentType: "", data: Data(base64Encoded: "HOGE")!)])
+        return MultipartBody(file: bodies)
     }
     
-    static func decodeBase64(base64String: Data) -> String {
-        let hoge = Data(base64Encoded: base64String.base64EncodedString(), options: .ignoreUnknownCharacters)
+    // MARK: Private method
+    static func parseMultipartBodyFile(part: String) -> MultipartBodyFile? {
+        let payload = part.data(using: .utf8)
+        guard var payloadData = payload else {
+            return nil
+        }
         
-        return String(data: hoge!, encoding: .utf8)!
-    }
-    
-    static func parseLine(targetString: String) -> [String] {
-        return targetString.components(separatedBy: "\r\n")
+        guard let range = payloadData.range(of: LINEFEED.data(using: .utf8)!) else {
+            return nil
+        }
+        
+        // Get line until line feed
+        payloadData.subdata(in: 0..<range.lowerBound)
+        // Remove line from the payload
+        payloadData.removeSubrange(0..<range.upperBound)
+        
+        // Formatting data
+        let leftOver = String(data: payloadData, encoding: .utf8)
+        guard let formattingData = Data(base64Encoded: leftOver!) else {
+            return nil
+        }
+        
+        return MultipartBodyFile(contentDisposition: "", name: "", filename: "", contentType: "", data: formattingData)
     }
 }
 

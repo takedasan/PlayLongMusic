@@ -45,7 +45,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
         
         do {
-            let multipart = Multipart.init(contentType: request.headers.contentType!, bodyBase64: request.body)
+            let multipart = Multipart.init(contentType: request.headers.contentType!, body: request.body)
             try multipart.body.file[0].data.write(to: savePath, options: Data.WritingOptions.atomic)
         } catch let error as NSError {
             print(error)
