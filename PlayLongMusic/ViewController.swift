@@ -32,7 +32,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         do {
             let htmlString = try String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
             return HTTPResponse(content: htmlString)
-        } catch let error as NSError {
+        } catch {
             print(error)
             fatalError("Uploader HTML file is not found.")
         }
@@ -40,14 +40,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     private func handlePost(request: HTTPRequest) -> HTTPResponse {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let savePath = documentsPath.appendingPathComponent("hoge.mp3")
-        
-
         
         do {
             let multipart = Multipart.init(contentType: request.headers.contentType!, body: request.body)
+            let savePath = documentsPath.appendingPathComponent(multipart.body.file[0].fileName)
+            
             try multipart.body.file[0].data.write(to: savePath, options: Data.WritingOptions.atomic)
-        } catch let error as NSError {
+        } catch {
             print(error)
             fatalError("File save failed.")
         }
