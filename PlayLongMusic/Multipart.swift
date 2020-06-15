@@ -1,10 +1,11 @@
 import Foundation
 
-private let LINEFEED = "\r\n"
+fileprivate let LINEFEED = "\r\n"
 
-fileprivate class MultipartUitls {
+fileprivate class MultipartParser {
     // MARK: API
     static func parseHeader(contentType: String) -> MultipartContentType {
+        // Example -> Content-Type: multipart/form-data; boundary=----WebKitFormBoundary5aJB0dB2B5PV7h8H
         let headerLines = contentType.components(separatedBy: LINEFEED)
         
         let splitedSemicolon = headerLines[0].components(separatedBy: ";")
@@ -14,11 +15,11 @@ fileprivate class MultipartUitls {
         return MultipartContentType(contentType: contentType, boundary: boundary)
     }
     
-    static func parseBody(body: Data, boundary: String) -> MultipartBody {
+    static func parseBody(body: Data, boundary: String) -> MultipartBodies {
         let splitedBody = body.splitByData(boundary: "--" + boundary)
         
         guard let bodies = splitedBody else {
-            return MultipartBody(file: [MultipartBodyFile]())
+            return MultipartBodies(files: [MultipartBodyFile]())
         }
         
         var files = [MultipartBodyFile]()
@@ -28,7 +29,7 @@ fileprivate class MultipartUitls {
             }
         }
         
-        return MultipartBody(file: files)
+        return MultipartBodies(files: files)
     }
     
     // MARK: Private method
@@ -101,11 +102,11 @@ fileprivate class MultipartUitls {
 // MARK: Inner structs
 struct Multipart {
     let contentType: MultipartContentType
-    let body: MultipartBody
+    let body: MultipartBodies
     
     init(contentType: String, body: Data) {
-        self.contentType = MultipartUitls.parseHeader(contentType: contentType)
-        self.body = MultipartUitls.parseBody(body: body, boundary: self.contentType.boundary)
+        self.contentType = MultipartParser.parseHeader(contentType: contentType)
+        self.body = MultipartParser.parseBody(body: body, boundary: self.contentType.boundary)
     }
 }
 
@@ -114,8 +115,8 @@ struct MultipartContentType {
     let boundary: String
 }
 
-struct MultipartBody {
-    let file: [MultipartBodyFile]
+struct MultipartBodies {
+    let files: [MultipartBodyFile]
 }
 
 struct MultipartBodyFile {

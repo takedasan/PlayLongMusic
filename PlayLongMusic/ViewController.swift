@@ -37,15 +37,18 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             fatalError("Uploader HTML file is not found.")
         }
     }
-
+    
     private func handlePost(request: HTTPRequest) -> HTTPResponse {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
         do {
+            // Parse a request
             let multipart = Multipart.init(contentType: request.headers.contentType!, body: request.body)
-            let savePath = documentsPath.appendingPathComponent(multipart.body.file[0].fileName)
             
-            try multipart.body.file[0].data.write(to: savePath, options: Data.WritingOptions.atomic)
+            for file in multipart.body.files {
+                let savePath = documentsPath.appendingPathComponent(file.fileName)
+                try file.data.write(to: savePath, options: Data.WritingOptions.atomic)
+            }
         } catch {
             print(error)
             fatalError("File save failed.")
@@ -55,13 +58,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     private func togglePlayButton() {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let audioUrl = URL(fileURLWithPath: documentsPath).appendingPathComponent("hoge.mp3")
-        
-        print(audioUrl)
+        //        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let documentsPath2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
+            let directoryContents = try FileManager.default
+                .contentsOfDirectory(at: documentsPath2, includingPropertiesForKeys: nil)
+                .filter{ $0.pathExtension == "mp3" }
+            audioPlayer = try AVAudioPlayer(contentsOf: directoryContents[0])
             audioPlayer.delegate = self
         } catch {
             print(error)
