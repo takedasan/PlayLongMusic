@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092893E5249900E8006FA111 /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092893E4249900E7006FA111 /* MusicTableViewCell.swift */; };
+		092893E724990689006FA111 /* MusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092893E624990689006FA111 /* MusicTableViewController.swift */; };
+		092893E92499075F006FA111 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092893E82499075F006FA111 /* Music.swift */; };
 		09AB316624742A6C0022533A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB316524742A6C0022533A /* AppDelegate.swift */; };
 		09AB316824742A6C0022533A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB316724742A6C0022533A /* SceneDelegate.swift */; };
 		09AB316A24742A6C0022533A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB316924742A6C0022533A /* ViewController.swift */; };
@@ -14,7 +17,6 @@
 		09AB316F24742A7A0022533A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09AB316E24742A7A0022533A /* Assets.xcassets */; };
 		09AB317224742A7A0022533A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AB317024742A7A0022533A /* LaunchScreen.storyboard */; };
 		09AB317D24742A7B0022533A /* PlayLongMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */; };
-		09AB318824781C920022533A /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09AB318724781C920022533A /* sample.mp3 */; };
 		09E3120F2483EB100015B3BC /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 09E3120E2483EB100015B3BC /* Telegraph */; };
 		09E31213248B4BC20015B3BC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 09E31212248B4BC20015B3BC /* .gitignore */; };
 		09E31215248B6FC90015B3BC /* uploadform.html in Resources */ = {isa = PBXBuildFile; fileRef = 09E31214248B6FC90015B3BC /* uploadform.html */; };
@@ -32,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		092893E4249900E7006FA111 /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
+		092893E624990689006FA111 /* MusicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewController.swift; sourceTree = "<group>"; };
+		092893E82499075F006FA111 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		09AB316224742A6C0022533A /* PlayLongMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayLongMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AB316524742A6C0022533A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09AB316724742A6C0022533A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +48,6 @@
 		09AB317824742A7B0022533A /* PlayLongMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayLongMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayLongMusicTests.swift; sourceTree = "<group>"; };
 		09AB317E24742A7B0022533A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09AB318724781C920022533A /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sample.mp3; sourceTree = "<group>"; };
 		09E31212248B4BC20015B3BC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		09E31214248B6FC90015B3BC /* uploadform.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = uploadform.html; sourceTree = "<group>"; };
 		09E31216248BCFAE0015B3BC /* Multipart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipart.swift; sourceTree = "<group>"; };
@@ -90,11 +94,13 @@
 		09AB316424742A6C0022533A /* PlayLongMusic */ = {
 			isa = PBXGroup;
 			children = (
-				09AB318724781C920022533A /* sample.mp3 */,
 				09AB316524742A6C0022533A /* AppDelegate.swift */,
 				09AB316724742A6C0022533A /* SceneDelegate.swift */,
 				09AB316924742A6C0022533A /* ViewController.swift */,
+				092893E82499075F006FA111 /* Music.swift */,
 				09AB316B24742A6C0022533A /* Main.storyboard */,
+				092893E624990689006FA111 /* MusicTableViewController.swift */,
+				092893E4249900E7006FA111 /* MusicTableViewCell.swift */,
 				09AB316E24742A7A0022533A /* Assets.xcassets */,
 				09AB317024742A7A0022533A /* LaunchScreen.storyboard */,
 				09AB317324742A7A0022533A /* Info.plist */,
@@ -204,7 +210,6 @@
 				09AB317224742A7A0022533A /* LaunchScreen.storyboard in Resources */,
 				09AB316F24742A7A0022533A /* Assets.xcassets in Resources */,
 				09E31215248B6FC90015B3BC /* uploadform.html in Resources */,
-				09AB318824781C920022533A /* sample.mp3 in Resources */,
 				09AB316D24742A6C0022533A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,10 +228,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				092893E5249900E8006FA111 /* MusicTableViewCell.swift in Sources */,
 				09E31217248BCFAE0015B3BC /* Multipart.swift in Sources */,
 				09AB316A24742A6C0022533A /* ViewController.swift in Sources */,
 				09AB316624742A6C0022533A /* AppDelegate.swift in Sources */,
+				092893E92499075F006FA111 /* Music.swift in Sources */,
 				09AB316824742A6C0022533A /* SceneDelegate.swift in Sources */,
+				092893E724990689006FA111 /* MusicTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
