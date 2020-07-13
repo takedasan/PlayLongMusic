@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pHU-yc-BRD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jud-qt-VBx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -43,10 +43,11 @@
                             <outlet property="delegate" destination="pHU-yc-BRD" id="PVr-nw-IgE"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="3rE-cx-dnC"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C69-BH-e2Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-842" y="123"/>
+            <point key="canvasLocation" x="2016" y="-66"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -56,25 +57,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMN-sm-Y07">
-                                <rect key="frame" x="162" y="161" width="53" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45T-5K-S3D">
+                                <rect key="frame" x="187" y="274" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="play"/>
+                                <state key="normal" title="music"/>
                                 <connections>
-                                    <action selector="pushPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7lj-M7-Mre"/>
+                                    <segue destination="pHU-yc-BRD" kind="show" id="dEK-ai-wgw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlB-xT-Whg">
+                                <rect key="frame" x="187" y="414" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="upload"/>
+                                <connections>
+                                    <segue destination="nne-He-OCQ" kind="show" id="bJe-S4-BLE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="playButton" destination="oMN-sm-Y07" id="Thi-TT-ed5"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="ppV-zR-YCB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="123"/>
+            <point key="canvasLocation" x="850.72463768115949" y="122.54464285714285"/>
+        </scene>
+        <!--Music Upload-->
+        <scene sceneID="e8o-av-jqU">
+            <objects>
+                <viewController title="Music Upload" id="nne-He-OCQ" customClass="MusicUploadViewController" customModule="PlayLongMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QpM-Ff-Kca">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="JaH-ve-PTs"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cCG-H9-XE8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EzL-Vd-pBP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2016" y="603"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xLH-fW-Hpq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jud-qt-VBx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pzA-6q-3ZD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="r6e-gQ-ZaZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYN-HY-y4X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-59.420289855072468" y="122.54464285714285"/>
         </scene>
     </scenes>
 </document>
