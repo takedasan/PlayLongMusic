@@ -2,19 +2,27 @@ import UIKit
 import Telegraph
 
 class MusicUploadViewController: UIViewController {
-    var server: Server!
+    var server = Server()
+    @IBOutlet weak var logTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Run web server
-        server = Server()
-        try! server.start(port: 9000)
+        // Setup server methods
         server.route(.GET, "", handleGet)
         server.route(.POST, "", handlePost)
     }
+    
+    // MARK: UI Action
+    @IBAction func handleServerSwitch(_ sender: UISwitch) {
+        if(sender.isOn) {
+            try! server.start(port: 9000)
+        } else {
+            server.stop()
+        }
+    }
 
-    // MARK: Private methods
+    // MARK: Server method
     private func handleGet(request: HTTPRequest) -> HTTPResponse {
         let htmlFile = Bundle.main.path(forResource: "uploadform", ofType: "html")
         
@@ -37,6 +45,11 @@ class MusicUploadViewController: UIViewController {
             for file in multipart.body.files {
                 let savePath = documentsPath.appendingPathComponent(file.fileName)
                 try file.data.write(to: savePath, options: Data.WritingOptions.atomic)
+                
+                // print to view
+                DispatchQueue.main.async {
+                    self.logTextView.text = file.fileName
+                }
             }
         } catch {
             print(error)
