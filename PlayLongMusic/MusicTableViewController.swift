@@ -9,9 +9,8 @@ class MusicTableViewController: UITableViewController {
         super.viewDidLoad()
         loadMusics()
     }
-
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -30,7 +29,16 @@ class MusicTableViewController: UITableViewController {
         let music = musics[indexPath.row]
         cell.musicUrl = music.url
         
+        //gestureを設定
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapPlay))
+        cell.playStopButton.addGestureRecognizer(tapGesture)
+        cell.playStopButton.isUserInteractionEnabled = true
+        
         return cell
+    }
+    
+    @objc func tapPlay(gestureRecognizer: UITapGestureRecognizer) {
+        print("hoge")
     }
 
     /*
