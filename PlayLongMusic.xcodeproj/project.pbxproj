@@ -18,6 +18,8 @@
 		09AB317224742A7A0022533A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AB317024742A7A0022533A /* LaunchScreen.storyboard */; };
 		09AB317D24742A7B0022533A /* PlayLongMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */; };
 		09D9E6AE24BCA8E0008CBC1B /* MusicUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9E6AD24BCA8E0008CBC1B /* MusicUploadViewController.swift */; };
+		09D9E6B024C0A291008CBC1B /* MusicControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9E6AF24C0A291008CBC1B /* MusicControl.swift */; };
+		09D9E6BA24C0B56D008CBC1B /* MusicCellTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9E6B924C0B56D008CBC1B /* MusicCellTapGesture.swift */; };
 		09E3120F2483EB100015B3BC /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 09E3120E2483EB100015B3BC /* Telegraph */; };
 		09E31213248B4BC20015B3BC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 09E31212248B4BC20015B3BC /* .gitignore */; };
 		09E31215248B6FC90015B3BC /* uploadform.html in Resources */ = {isa = PBXBuildFile; fileRef = 09E31214248B6FC90015B3BC /* uploadform.html */; };
@@ -50,6 +52,8 @@
 		09AB317C24742A7B0022533A /* PlayLongMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayLongMusicTests.swift; sourceTree = "<group>"; };
 		09AB317E24742A7B0022533A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D9E6AD24BCA8E0008CBC1B /* MusicUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicUploadViewController.swift; sourceTree = "<group>"; };
+		09D9E6AF24C0A291008CBC1B /* MusicControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicControl.swift; sourceTree = "<group>"; };
+		09D9E6B924C0B56D008CBC1B /* MusicCellTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCellTapGesture.swift; sourceTree = "<group>"; };
 		09E31212248B4BC20015B3BC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		09E31214248B6FC90015B3BC /* uploadform.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = uploadform.html; sourceTree = "<group>"; };
 		09E31216248BCFAE0015B3BC /* Multipart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipart.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				09AB317324742A7A0022533A /* Info.plist */,
 				09E31214248B6FC90015B3BC /* uploadform.html */,
 				09E31216248BCFAE0015B3BC /* Multipart.swift */,
+				09D9E6AF24C0A291008CBC1B /* MusicControl.swift */,
+				09D9E6B924C0B56D008CBC1B /* MusicCellTapGesture.swift */,
 			);
 			path = PlayLongMusic;
 			sourceTree = "<group>";
@@ -235,10 +241,12 @@
 				09E31217248BCFAE0015B3BC /* Multipart.swift in Sources */,
 				09AB316A24742A6C0022533A /* ViewController.swift in Sources */,
 				09AB316624742A6C0022533A /* AppDelegate.swift in Sources */,
+				09D9E6B024C0A291008CBC1B /* MusicControl.swift in Sources */,
 				092893E92499075F006FA111 /* Music.swift in Sources */,
 				09AB316824742A6C0022533A /* SceneDelegate.swift in Sources */,
 				092893E724990689006FA111 /* MusicTableViewController.swift in Sources */,
 				09D9E6AE24BCA8E0008CBC1B /* MusicUploadViewController.swift in Sources */,
+				09D9E6BA24C0B56D008CBC1B /* MusicCellTapGesture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

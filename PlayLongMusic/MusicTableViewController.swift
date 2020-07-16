@@ -1,10 +1,10 @@
 import UIKit
 
 class MusicTableViewController: UITableViewController {
-    
     // MARK: Properties
     var musics = [Music]()
-
+    @IBOutlet weak var musicControl: MusicControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMusics()
@@ -27,20 +27,24 @@ class MusicTableViewController: UITableViewController {
         }
         
         let music = musics[indexPath.row]
-        cell.musicUrl = music.url
-        
+
         //gestureを設定
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapPlay))
+        let tapGesture = MusicCellTapGesture(target: self, action: #selector(self.tapPlay))
+        tapGesture.musicUrl = music.url
         cell.playStopButton.addGestureRecognizer(tapGesture)
         cell.playStopButton.isUserInteractionEnabled = true
         
         return cell
     }
     
-    @objc func tapPlay(gestureRecognizer: UITapGestureRecognizer) {
-        print("hoge")
+    @objc func tapPlay(gestureRecognizer: MusicCellTapGesture) {
+        musicControl.musicUrl = gestureRecognizer.musicUrl
     }
-
+    
+    @IBAction func handlePlayButton(_ sender: UIButton) {
+        musicControl.togglePlayButton()
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

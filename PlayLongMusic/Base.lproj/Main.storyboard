@@ -19,10 +19,18 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WG-O9-umZ">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qY0-AV-Osr" userLabel="MusicControl" customClass="MusicControl" customModule="PlayLongMusic" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                    <state key="normal" title="Button"/>
-                                </button>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WG-O9-umZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="handlePlayButton:" destination="pHU-yc-BRD" eventType="touchUpInside" id="MQ6-Rc-TTc"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                         </stackView>
                         <prototypes>
@@ -54,6 +62,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3rE-cx-dnC"/>
+                    <connections>
+                        <outlet property="musicControl" destination="qY0-AV-Osr" id="yN2-tX-8yG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C69-BH-e2Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
